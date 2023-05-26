@@ -24,7 +24,7 @@ function NavBar() {
   return (
     <nav className="nav">
  
-   <a href="/" className="nav_brand"> COCA COFFEE</a>
+   <a href="/" className="nav_brand"> CAMERA SHOP </a>
     
       <div className="nav-items">
         <ul className={active}>
@@ -38,7 +38,7 @@ function NavBar() {
             <NavLink to="/login" className="nav_link">Login</NavLink>
           </li>
           <li>
-            <NavLink to="/signup" className="nav_link">Signup</NavLink>
+            <NavLink to="/signup" className="nav_link">SignUp</NavLink>
           </li>
         </ul>
       </div>
