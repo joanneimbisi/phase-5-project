@@ -1,0 +1,30 @@
+.home{
+    font-size: large;
+
+    
+}
+
+.home_title{
+    margin-top: 10%;
+    font-size: x-large;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
+.container{
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.pic{
+     max-width: 1050px; 
+    margin: 0 auto;
+    margin-top: 5%; 
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 70vh;
+    width: 100%;
+    
+    
+}
