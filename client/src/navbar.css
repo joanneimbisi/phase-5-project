@@ -28,12 +28,12 @@ a {
   align-items: center;
   justify-content: space-around;
   height: 8vh;
-  background: rgb(125, 75, 28);
+  background:black;
   font-family: sans-serif; 
 }
 .nav_brand {
   text-transform: uppercase;
-  color: #ddc6a8;
+  color: whitesmoke;
   float: left;
 }
 
@@ -42,7 +42,7 @@ a {
   align-items: center;
   justify-content: space-around;
   gap: 3rem;
-  font-size:  22px;
+  font-size: 16px;
 }
 .nav_toggler {
   display: none;
@@ -77,7 +77,7 @@ a {
   transform: translateX(0%);
 }
 .nav_link{
-  color: #ddc6a8
+  color: whitesmoke
 }
 /* Toggle Icon Animation */
 
