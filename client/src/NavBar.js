@@ -2,14 +2,17 @@ import React from "react";
 import { NavLink} from "react-router-dom";
 import "./navbar.css";
 import { useState } from "react"
-
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "./components/actions/users";
 
 
 function NavBar() {
   
   const [active, setActive] = useState("nav_menu");
   const [icon, setIcon] = useState("nav_toggler");
-
+  const cart = useSelector((store) => store.cartReducer);
+  const { user } = useSelector((store)=> store.usersReducer)
+  const dispatch = useDispatch()
   const navToggle = () => {
     if (active === "nav_menu") {
       setActive("nav_menu nav_active");
@@ -21,6 +24,9 @@ function NavBar() {
     } else setIcon("nav_toggler");
   };
 
+  const handleLogOut = () =>{
+    dispatch(logout(user))
+  }
   return (
     <nav className="nav">
  
@@ -32,13 +38,17 @@ function NavBar() {
             <NavLink to="/" className="nav_link"> Home </NavLink>
           </li>
           <li>
-            <NavLink to="/coffees" className="nav_link">Menu</NavLink>
+            <NavLink to="/cameras" className="nav_link">Shop</NavLink>
           </li>
           <li>
-            <NavLink to="/login" className="nav_link">Login</NavLink>
+            {user ? <NavLink className="nav_link" onClick={handleLogOut}>LogOut</NavLink> :
+            <NavLink to="/login" className="nav_link" >Login</NavLink> }
           </li>
           <li>
             <NavLink to="/signup" className="nav_link">SignUp</NavLink>
+          </li>
+          <li>
+            <NavLink to="/cart" className="nav_link">Cart {cart.length}</NavLink>
           </li>
         </ul>
       </div>
