@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     #  before_action :create
     # skip_before_action :authorized, only: :show
-    skip_before_action :authorized, only: [:index, :show, :create, :review_length]
+    skip_before_action :authorized, only: [:index, :show, :create]
 
     def index
         render json: User.all
@@ -20,12 +20,6 @@ class UsersController < ApplicationController
     
     def show  
         render json: current_user, status: :ok
-    end
-
-    def review_length
-        n = params[:n]
-        results = User.all.select{ |u| u.reviews.length >= n.to_i }
-        render json: results
     end
     
    

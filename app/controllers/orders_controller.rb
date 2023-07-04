@@ -1,6 +1,11 @@
 class OrdersController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
-    skip_before_action :authorized, only: [:index, :show, :destroy]
+    skip_before_action :authorized, only: [:index, :show, :create, :update, :destroy]
+
+    def index
+        orders = Order.all # where(user_id: current_user.id)
+        render json: orders
+    end
 
     def show
         order = Order.find(params[:id])
@@ -8,13 +13,16 @@ class OrdersController < ApplicationController
     end
 
     def create
-        order = Order.create!(review_params.merge(user_id: current_user.id))  
-        render json: order, status: :created
+        params[:camera_ids].map do |c| 
+            Order.create!(order_params.merge(camera_id: c, user_id: 1))
+        end
+        render json: {}, status: :created
     end
 
     def update 
         order = Order.find_by(id: params[:id])
-            if order.user_id == session[:user_id] 
+            if true
+                # order.user_id == session[:user_id] 
             order.update(order_params)
             render json: order, status: :accepted
         else
@@ -23,10 +31,10 @@ class OrdersController < ApplicationController
     end
 
     def destroy
-        order = Review.find_by(id:params[:id])
+        order = Order.find_by(id:params[:id])
         if order
             order.destroy
-            head :no_content
+            render json: {}
         else 
             render json: {error: "order not found"}, status: :not_found
         end 
@@ -38,7 +46,8 @@ class OrdersController < ApplicationController
         render json:{error: invalid.record.errors}, status: :unprocessable_entity
     end
 
-    def review_params
-        params.require(:order).permit(:title, :description, :coffee_id)
+    
+    def order_params
+        params.require(:order).permit(:first_name, :last_name, :address)
     end
 end
