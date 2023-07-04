@@ -1,4 +1,4 @@
-class CamerasConrtoller < ApplicationController
+class CamerasController < ApplicationController
 rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 skip_before_action :authorized, only: [:index, :show]
 
