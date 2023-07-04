@@ -1,40 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom"
+import { signup } from "./components/actions/users";
+import "./login.css"
 
-function Signup() {
+function SignUp() {
+
+    const { user } = useSelector((store) => store.usersReducer);
+    const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [errors, setErrors] = useState([]);
 
+    console.log('users', user)
+    
+    useEffect(() => {
+        if (user) {
+            navigate('/')
+        }
+    }, [user, navigate])
+    
     const [formData, setFormData] = useState({
         username: "",
         password: "",
     });
-
-    function handleSubmit(event) {
-        event.preventDefault();
-        
-        fetch('/users', { 
-            method: "POST", 
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(formData)
-        })
-        .then((resp) => {
-            if (resp.ok){
-             resp.json()
-            
-            .then(navigate("/coffees"))
-            } else {
-              resp.json().then((errorData) => {
-               console.log(errorData.errors)
-                setErrors(errorData.errors)})
-            }
-        })       
-    }
     
-
-   
+    const handleSubmit = (event) =>{
+        event.preventDefault();
+        dispatch(signup(formData))
+        console.log(signup)
+        
+    }
 
     function handleChange(event){
         setFormData({
@@ -44,52 +38,74 @@ function Signup() {
 
     return (
         <>
-          <h2 className="submitted"> Sign Up</h2>
-          <form action= "#" onSubmit={handleSubmit} className="container">
-            <div className="input_box">
+          <div class='bold-line'></div>
+          <div class="container"> 
+          <div class='window'>
+          <div class='overlay'></div>
+           <div class='content'> 
+          <h2 class='welcome'> Sign Up</h2>
+          <br></br>
+          <div class='subtitle'> Create an account!</div>
+          <br></br>
+          <form action= "#" onSubmit={handleSubmit}>
                 <label htmlFor="username">
+            <div class="input_fields">
+                <br></br>
+                </div>
                 username:
                 <input
                     placeholder="username"
+                    class='input-line full-width'
                     type="textarea"
                     id="username"
                     onChange={handleChange}
                     value={formData.username}
                     required
-                />
+                    
+                    />
+                <i className="far fa-user"></i>
                 </label>
-            </div>
-            <div className="input_box">
+                <br />
+            {/* <div className="input_box"> */}
                 <label htmlFor="password">
                     password:
                     <input
                     placeholder="password"
+                    class='input-line full-width'
                     type="textarea"
                     id="password"
                     onChange={handleChange}
                     value={formData.password}
                     required
-                />
+                    />
+                <i className="far fa-user"></i>
                 </label>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <button type='submit' class='ghost-round full-width'> Sign Up </button>
+            </form>
+            </div>
 
             </div>
             <div>
         </div>
+        </div>
 
-            <input type="submit" value="Submit" className="sub"/>
-            </form>
+            <input type="submit" value="Submit" class='ghost-round full-width'/>
 
-             { errors && (
+             {/* { errors && (
                  <ul style={{ color: "red" }}>
                  {errors.map((error) => (
                      <li key={error}>{error}</li>
-                 ))}
-                 </ul>
-                 )} 
+                     ))}
+                     </ul>
+                    )}  */}
                
             </>
 
-);
+        );
 }
-export default Signup;
+export default SignUp;
 
