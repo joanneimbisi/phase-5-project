@@ -1,3 +1,3 @@
-class Brand < ApplicationController
-    has_many: :cameras
+class Brand < ApplicationRecord
+    has_many :cameras
 end

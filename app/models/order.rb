@@ -1,4 +1,9 @@
-class Order < ApplicationController
-    belongs_to :customer
-    belongs_to :camera
+class Order < ApplicationRecord
+    belongs_to :user, optional: true  
+      belongs_to :camera
+
+
+      def username
+        user.username
+      end
 end
