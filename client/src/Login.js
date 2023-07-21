@@ -14,7 +14,7 @@ function Login(){
 
     useEffect(() => {
       if (user) {
-        navigate('/')
+        navigate('/cameras')
       }
     }, [user, navigate])
 
@@ -40,34 +40,34 @@ function Login(){
 
         return (
           <>
-          <div class='bold-line'></div>
-          <div class="container"> 
-          <div class='window'>
-          <div class='overlay'></div>
-           <div class='content'>
-            <h2 class='welcome'> Login </h2>
+          <div className='bold-line'></div>
+          <div className="container"> 
+          <div className='window'>
+          <div className='overlay'></div>
+           <div className='content'>
+            <h2 className='welcome'> Login </h2>
             <div style={{color:"red"}}>
                  {loginError?.errors}
                  </div>
             <br></br>
-            <div class='subtitle'> Hello There!</div>
+            <div className='subtitle'> Hello There!</div>
             <br></br>
                <form onSubmit={handleSubmit}>
             <label className="id">
-                <div class='input-fields'>
+                <div className='input-fields'>
               username:
-             <input type="text" name="username" class='input-line full-width' onChange={handleChange} value={formData.username}/> 
+             <input type="text" name="username" className='input-line full-width' onChange={handleChange} value={formData.username}/> 
               <i className="far fa-user"></i>
             </div>
             </label>
             <br />
             <label className="id">
               password:
-              <input type="text" name="password" class='input-line full-width' onChange={handleChange} value={formData.password}/>
+              <input type="text" name="password" className='input-line full-width' onChange={handleChange} value={formData.password}/>
               <i className="far fa-user"></i>
             </label>
-            <div class='spacing'>or <span class='highlight'  onClick={handleSignUp}>Sign Up</span></div>
-            <button type='submit' disabled={loading} class='ghost-round full-width'>{loading ? 'Loading...' : 'Login'} </button>
+            <div className='spacing'>or <span className='highlight'  onClick={handleSignUp}>Sign Up</span></div>
+            <button type='submit' disabled={loading} className='ghost-round full-width'>{loading ? 'Loading...' : 'Login'} </button>
           </form>
           </div>
           </div>

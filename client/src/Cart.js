@@ -1,9 +1,11 @@
-// import { useState } from "react"
+import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import './cart.css'
 
 const Cart = () => {
+   
+    const navigate = useNavigate()
     const [values, setValues] = useState({
         first_name: "",
         last_name: "",
@@ -11,7 +13,9 @@ const Cart = () => {
     })
     const dispatch = useDispatch()
     const cart = useSelector((store) => store.cartReducer);
+    const errors = useSelector((store) => store.errorsReducer)
     console.log(cart)
+
     
     const handleDelete = (cartId) => {
         dispatch({ type: 'DELETE_ITEM', payload: cartId });
@@ -50,34 +54,52 @@ const Cart = () => {
             },
             body: JSON.stringify(data) 
         })
-        .then(resp => resp.json())
-        .then(() => {
-            dispatch({ type: 'ORDER_PLACED', payload: [] })
-            setValues({
-                first_name: "",
-                last_name: "",
-                address: ""
-            })
-        })
+        .then((resp) => {
+            if (resp.ok){
+             resp.json()
+             .then(() => {
+                 dispatch({ type: 'ORDER_PLACED', payload: [] })
+                 setValues({
+                     first_name: "",
+                     last_name: "",
+                     address: ""
+                 })
+                })
+                
+            } else {
+              resp.json().then(() => {
+                dispatch({ type:'SET_ERRORS', payload: errors})
+               
+              })
+    }})
+    navigate('/thankyou')
     }
+
+   
+
+
 
     return(
          <>
     
-    <h2> Your Info</h2>
-        <form onSubmit={handleSubmit}>
+    <h2 className="form"> Your Info</h2>
+
+    <form onSubmit={handleSubmit} className="form">
+        <h5 className="font-weight-bold py-2 border-0"> First Name</h5>
         <input
         value={values.first_name}
         onChange={handleFirstName}
         className="field"
         placeholder="Full Name"
         name="first_name"/>
+        <h5 className="font-weight-bold py-2 border-0"> Last Name </h5>
         <input
         value={values.last_name}
         onChange={handleLastName}
         className="field"
         placeholder="Full Name"
         name="last_name"/>
+        <h5 className="font-weight-bold py-2 border-0"> Address </h5>
             <input
             value={values.address}
             onChange={handleAddress}
@@ -88,22 +110,28 @@ const Cart = () => {
             className="form-field"
             type="submit"> Submit</button>
             </form>
-            
-            <h2> Your Cart</h2>
+        
             {cart.map((camera) => {
+                console.log(camera)
                 return <div key={camera.cartId}>
                 {camera.camera_name} {camera.image}
                 <button type="button" onClick={() => handleDelete(camera.cartId)}> Delete </button>
                 </div>
             })}
-            
+            <div className="form1">
             <h3> Cart Summary </h3>
-            <h6> Subtotal {subtotal}: </h6>
-            <h6> Shipping {shipping}: 4.95 </h6>
-            <h6> Taxes {taxes}: 3.00 </h6>
-            <h6> Total {total}: </h6>
+            <h4> Subtotal {subtotal}: </h4>
+            <h4> Shipping {shipping}: 4.95 </h4>
+            <h4> Tax {taxes}: 3.00 </h4>
+            <h4> Total {total}: </h4>
+            <div style={{color:"red"}}>
+                 {errors}
+                 </div>
+
+            </div>
             </>
             );
         }
-        
 export default Cart
+
+            

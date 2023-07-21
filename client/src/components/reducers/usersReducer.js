@@ -1,8 +1,8 @@
  const initialState = {
     user: null,
-    loading: false,
+    loading: true,
     loggedIn: false,
-    loginError: null
+    
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -15,10 +15,14 @@ const usersReducer = (state = initialState, action) => {
                 loading: false,
                 user: action.payload,
                 loggedIn: true,
-                loginError: false
             }
-        case "time":
-            return { loading: false }
+        case "CURRENT_USER":
+            return {
+                 ...state,
+                loading: false,
+                user: action.payload,
+                loggedIn: action.payload ? true : false,
+            }
         case "LOGIN_ERROR":
             return {
                 ...state,
@@ -29,8 +33,8 @@ const usersReducer = (state = initialState, action) => {
             case "LOG_OUT":
                 return {
                     ...state,
-                    loggedIn: false,
-                    user: action.payload
+                    user: null,
+                    loggedIn: false
                 }
                 
             case "SIGN_UP":

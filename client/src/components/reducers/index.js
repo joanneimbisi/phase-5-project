@@ -6,7 +6,6 @@ import brandsReducer from "./brandsReducer"
 import cartReducer from "./cartReducer"
 import ordersReducer from "./ordersReducer"
 
-
 export default combineReducers({
     camerasReducer,
     errorsReducer,

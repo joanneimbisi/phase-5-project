@@ -1,25 +1,29 @@
 import { useSelector } from "react-redux";
 import Order from "./Order";
+import './order.css'
 
 
 
 const MyOrders = () => {
     
     const orders = useSelector((store) => store.ordersReducer);
- 
+
     
 
     const data = orders.map((order) => { 
         return <Order key={order.id} order={order} />
+    
+        
     });
 
-    console.log('data', data) // [<Order key='1' />, <Order key='3' />, <Order />]
+    console.log('data', data) 
     
     console.log(orders)
     return(
         <>
-        <h2> Order History</h2>
+        <b className='order'> Order History</b>
         {data}
+        
       </>
     );
 };

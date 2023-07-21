@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   
   resources :orders
 
-  
+  get "/auth", to: "users#show" 
+  get "/current_user", to: 'users#signed_in_user'
   post "/signup", to: "users#create"
 
   post "/login", to: "sessions#create"

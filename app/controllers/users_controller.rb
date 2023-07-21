@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     #  before_action :create
-    # skip_before_action :authorized, only: :show
-    skip_before_action :authorized, only: [:index, :show, :create]
+rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
+    skip_before_action :authorized, only: [:index, :show, :create, :signed_in_user]
 
     def index
         render json: User.all
@@ -20,6 +20,10 @@ class UsersController < ApplicationController
     
     def show  
         render json: current_user, status: :ok
+    end
+
+    def signed_in_user
+       render json: current_user
     end
     
    

@@ -5,11 +5,11 @@ class ApplicationController < ActionController::API
 
   def current_user
     User.find_by(id: session[:user_id]) 
-    end
+  end
   
-    def authorized  
-      return render json: {error: "Not Authorized"}, status: :unauthorized unless current_user
-    end 
+  def authorized  
+    render json: {error: "Not Authorized"}, status: :unauthorized unless current_user
+  end 
   
 
 end

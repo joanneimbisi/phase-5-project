@@ -26,7 +26,7 @@ function NavBar() {
 
   const handleLogOut = () =>{
     dispatch(logout(user))
-  }
+  } 
   return (
     <nav className="nav">
  
@@ -45,10 +45,7 @@ function NavBar() {
             <NavLink to="/login" className="nav_link" >Login</NavLink> }
           </li>
           <li>
-            <NavLink to="/signup" className="nav_link">SignUp</NavLink>
-          </li>
-          <li>
-            <NavLink to="/cart" className="nav_link">Cart {cart.length}</NavLink>
+            <NavLink to="/cart" className="nav_link" >Cart {cart.length}</NavLink>
           </li>
         </ul>
       </div>

@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
     skip_before_action :authorized, only: [:index, :show, :create, :update, :destroy]
 
     def index
-        orders = Order.all # where(user_id: current_user.id)
+        orders = Order.where(user_id: current_user.id)
         render json: orders
     end
 

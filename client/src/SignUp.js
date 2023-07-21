@@ -38,24 +38,24 @@ function SignUp() {
 
     return (
         <>
-          <div class='bold-line'></div>
-          <div class="container"> 
-          <div class='window'>
-          <div class='overlay'></div>
-           <div class='content'> 
-          <h2 class='welcome'> Sign Up</h2>
+          <div className='bold-line'></div>
+          <div className="container"> 
+          <div className='window'>
+          <div className='overlay'></div>
+           <div className='content'> 
+          <h2 className='welcome'> Sign Up</h2>
           <br></br>
-          <div class='subtitle'> Create an account!</div>
+          <div className='subtitle'> Create an account!</div>
           <br></br>
           <form action= "#" onSubmit={handleSubmit}>
                 <label htmlFor="username">
-            <div class="input_fields">
+            <div className="input_fields">
                 <br></br>
                 </div>
                 username:
                 <input
                     placeholder="username"
-                    class='input-line full-width'
+                    className='input-line full-width'
                     type="textarea"
                     id="username"
                     onChange={handleChange}
@@ -71,7 +71,7 @@ function SignUp() {
                     password:
                     <input
                     placeholder="password"
-                    class='input-line full-width'
+                    className='input-line full-width'
                     type="textarea"
                     id="password"
                     onChange={handleChange}
@@ -84,7 +84,7 @@ function SignUp() {
                 <br></br>
                 <br></br>
                 <br></br>
-                <button type='submit' class='ghost-round full-width'> Sign Up </button>
+                <button type='submit' className='ghost-round full-width'> Sign Up </button>
             </form>
             </div>
 
@@ -93,7 +93,7 @@ function SignUp() {
         </div>
         </div>
 
-            <input type="submit" value="Submit" class='ghost-round full-width'/>
+            <input type="submit" value="Submit" className='ghost-round full-width'/>
 
              {/* { errors && (
                  <ul style={{ color: "red" }}>

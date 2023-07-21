@@ -1,6 +1,6 @@
 export const login = (formData) => {
   return (dispatch) => {
-    dispatch({ type: 'LOADING', payload: true });
+    // dispatch({ type: 'LOADING', payload: true });
     return fetch("/login", {
       method: "POST",
       headers: {
@@ -53,10 +53,25 @@ export const logout = (user) => {
   .then(resp => resp.json())
   .then(data => { 
            console.log(data)
-           dispatch({type: 'LOG_OUT', payload: null })
+           dispatch({type: 'LOG_OUT'})
   }) 
   
   
+  }
+}
+
+export const getCurrentUser = () => {
+  return (dispatch) => {
+    fetch(`/current_user`, { 
+      method: "GET", 
+      headers: {
+          "Content-Type": "application/json"
+      },          
+    })
+    .then(resp => resp.json())
+    .then(data => { 
+        dispatch({ type: 'CURRENT_USER', payload: data })
+    }) 
   }
 }
 

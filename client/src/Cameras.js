@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector} from "react-redux";
 import "./Card.css";
-import { uuid } from 'uuidv4';
+// import { uuid } from 'uuidv4';
+import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from "react-router-dom";
 
-
-
-// eslint, prettier (airbnb)
-
+ 
 const Cameras = () => {
   const cameras = useSelector((store) => store.camerasReducer);
-  // const cartItemAmount = 
+  const currentUser = useSelector((store) => store.usersReducer);
+ console.log(currentUser)
   console.log(cameras)
   
   
@@ -37,7 +36,7 @@ const Cameras = () => {
   };
  
   const addToCart = (camera) =>{
-    dispatch({ type: 'ADD_TO_CART', payload: { ...camera, cartId: uuid() } });
+    dispatch({ type: 'ADD_TO_CART', payload: { ...camera, cartId: uuidv4() } });
   }
 
   const handleProduct = (id) => {
@@ -53,57 +52,44 @@ const Cameras = () => {
           Brand
           <select value={selectedBrand} onChange={handleChange}>
             {brands.map((brand) => (
-              <option value={brand.id}>{brand.brand_name}</option>
+              <option key={brand.id} value={brand.id}>{brand.brand_name}</option>
             ))}
           </select>
         </label>
       </div>
 
-      <main class="container">
+      <main className="container">
+      <main className="grid">
         {filteredCameras.map((camera) => (
-          <div class="row">
-            <div class="card">
-              <div class="product-image">
+          <div key={camera.id} className="row">
+            <div className="card">
+              <div className="product-image" >
                 <img src={camera.image_url} alt="cameraimage" onClick={() => handleProduct(camera.id)}/>
               </div>
-              <div class="product-info">
-                <div class="product-text">
+              <div className="product-info">
+                <div className="product-text">
                   <h2>{camera.camera_name}</h2>
                 </div>
                 <div className="card-body">
                   <p>{camera.brand}</p>
                 </div>
               </div>
-              <div class="product-price-btn">
-                <div class="btn">
+              <div className="product-price-btn">
+                <div className="btn">
                   <p>
                     <span>$</span>
                     {camera.price}
                   </p>
-                  <h5 class="buy-btn" onClick={() => addToCart(camera)}>Add to Cart</h5>
-                  <button class="fav">
-                    <svg
-                      class="svg"
-                      id="i-star"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 32 32"
-                      stroke="#000"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                    >
-                      <path d="M16 2 L20 12 30 12 22 19 25 30 16 23 7 30 10 19 2 12 12 12 Z" />
-                    </svg>
-                  </button>
+                  <h5 className="buy-btn" onClick={() => addToCart(camera)}>Add to Cart</h5>
+               
                 </div>
               </div>
             </div>
           </div>
         ))}
+        </main>
       </main>
     </>
   );
 };
 export default Cameras;
-// onClick of add to cart, add items to their cart
-// 
