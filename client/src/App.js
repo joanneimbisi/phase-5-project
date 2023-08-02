@@ -66,6 +66,3 @@ function App() {
 export default App;
 
 
-// ReadME
-// Form submission (error handling and formatting)
-// LogOut (refresh)
