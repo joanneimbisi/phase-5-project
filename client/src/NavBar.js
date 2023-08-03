@@ -27,6 +27,8 @@ function NavBar() {
   const handleLogOut = () =>{
     dispatch(logout(user))
   } 
+
+  console.log('user', user)
   return (
     <nav className="nav">
  

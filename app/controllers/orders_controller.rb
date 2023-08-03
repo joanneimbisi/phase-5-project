@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
-    skip_before_action :authorized, only: [:index, :show, :create, :update, :destroy]
+    skip_before_action :authorized, only: [:show, :update, :destroy]
 
     def index
         orders = Order.where(user_id: current_user.id)
@@ -14,9 +14,9 @@ class OrdersController < ApplicationController
 
     def create
         params[:camera_ids].map do |c| 
-            Order.create!(order_params.merge(camera_id: c, user_id: 1))
+            Order.create!(order_params.merge(camera_id: c, user_id: current_user.id))
         end
-        render json: {}, status: :created
+        render json: {}
     end
 
     def update 
@@ -43,11 +43,11 @@ class OrdersController < ApplicationController
     private
 
     def render_unprocessable_entity(invalid)
-        render json:{error: invalid.record.errors}, status: :unprocessable_entity
+        render json: { errors: invalid.record.errors }, status: :unprocessable_entity
     end
 
     
     def order_params
-        params.require(:order).permit(:first_name, :last_name, :address)
+        params.require(:order).permit(:first_name, :last_name, :shipping_address)
     end
 end
