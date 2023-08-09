@@ -54,7 +54,7 @@ function Login(){
             <br></br>
                <form onSubmit={handleSubmit}>
             <label className="id">
-                <div className='input-fields'>
+                <div className='input-field'>
               username:
              <input type="text" name="username" className='input-line full-width' onChange={handleChange} value={formData.username}/> 
               <i className="far fa-user"></i>

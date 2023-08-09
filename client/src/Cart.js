@@ -91,11 +91,12 @@ const Cart = () => {
 
   return (
     <>
+
+    <div className="small-container cart-page">
     <table> 
         <tbody>
          <tr>
             <th className="prod">Product</th>
-            <th className="subs">Subtotal</th>
         </tr>
 
         {cart.map((camera) => {
@@ -117,7 +118,7 @@ const Cart = () => {
                 onClick={() => handleDelete(camera.cartId)}
                 >
                 {" "}
-                Remove Iter{" "}
+                Remove Item{" "}
                  </button>
                 </td>
               </tr>
@@ -134,26 +135,28 @@ const Cart = () => {
               </tr>
               <tr>
                 <td>Shipping</td>
-                <td>{shipping}</td>
+                <td>${shipping}</td>
               </tr>
               <tr>
-                <td>Taxes</td>
-                <td>{taxes}</td>
+                <td>Tax</td>
+                <td>${taxes}</td>
               </tr>
               <tr>
                 <td>Total</td>
-                <td>{total}</td>
+                <td>${total}</td>
               </tr>
             </tbody>
            </table>
+           </div>
           </div> 
 
  
-      <h2 className="all "> Your Info</h2>
+      <h2 className="info"> Your Info</h2>
 
       <div className="all">
       <form onSubmit={handleSubmit} className="form">
-        <label className="field">
+        <div>
+        <div className="fname">
         <span className="label-text"> First Name</span>
         <input
           type="text"
@@ -164,8 +167,8 @@ const Cart = () => {
           name="first_name"
         />
         <ErrorComponent name='First name' errors={errors.first_name} />
-        </label>
-        <label className="field">
+        </div>
+        <div className="lname">
         <span className="label-text"> Last Name </span>
         <input
         type="text"
@@ -176,8 +179,8 @@ const Cart = () => {
           name="last_name"
         />
         <ErrorComponent name='Last name' errors={errors.last_name} />
-        </label>
-        <label className="field">
+        </div>        
+        <div className="field">
         <span className="label-text"> Address </span>
         <input
         type="text"
@@ -188,12 +191,12 @@ const Cart = () => {
           name="shipping_address"
         />
         <ErrorComponent name='Shipping Address' errors={errors.shipping_address} />
-        <br></br>
         <button className="sub-button" type="submit">
           {" "}
-          Submit
+          SUBMIT
          </button>
-        </label>
+        </div>
+        </div>
       </form>
       
   </div>
