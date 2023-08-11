@@ -84,7 +84,10 @@ table tr th {
     justify-content: space-between;
   }
 
-  .table{
+ .cart-page{
+    margin:80px auto;
+ }  
+  table{
     width: 100%;
     border-collapse: collapse;
   }
@@ -159,4 +162,7 @@ th:last-child{
   }
   .field{
     display: block;
+  }
+  .info{
+    padding: 0%;
   }

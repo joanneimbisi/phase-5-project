@@ -7,7 +7,7 @@ const ErrorComponent = ({ name, errors }) => {
     if (!errors || errors.length === 0) return null
 
     return errors.map(error => {
-        return <div>{`${name} ${error}`}</div>
+        return <div key={error.shipping_address}>{`${name} ${error}`}</div>
     })
 }
 
@@ -152,7 +152,6 @@ const Cart = () => {
 
  
       <h2 className="info"> Your Info</h2>
-
       <div className="all">
       <form onSubmit={handleSubmit} className="form">
         <div>
