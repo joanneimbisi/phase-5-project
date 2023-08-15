@@ -50,6 +50,11 @@ function NavBar() {
           <li>
             <NavLink to="/cart" className="nav_link" >Cart {cart.length}</NavLink>
           </li>
+          <li>
+            { user?.id ? <NavLink to="/orders" className="nav_link" >My Orders</NavLink> :
+            null
+            }
+          </li>
         </ul>
       </div>
       <div onClick={navToggle} className={icon}>
