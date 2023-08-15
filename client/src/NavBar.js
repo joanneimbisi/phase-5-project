@@ -29,6 +29,7 @@ function NavBar() {
   } 
 
   console.log('user', user)
+
   return (
     <nav className="nav">
  
@@ -43,7 +44,7 @@ function NavBar() {
             <NavLink to="/cameras" className="nav_link">Shop</NavLink>
           </li>
           <li>
-            {user ? <NavLink className="nav_link" onClick={handleLogOut}>LogOut</NavLink> :
+            {user?.id ? <NavLink className="nav_link" onClick={handleLogOut}>LogOut</NavLink> :
             <NavLink to="/login" className="nav_link" >Login</NavLink> }
           </li>
           <li>

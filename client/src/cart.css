@@ -79,23 +79,25 @@ table tr th {
 
   /*----cart items -----*/
 
-  .small-img-row{
+.small-img-row{
     display: flex;
     justify-content: space-between;
-  }
+}
 
- .cart-page{
+.cart-page{
     margin:80px auto;
- }  
-  table{
+}  
+
+table{
     width: 100%;
     border-collapse: collapse;
-  }
-  .cart-info{
+}
+
+.cart-info{
     display: flex;
     flex-wrap: wrap;
-  }
-  th{
+}
+h4{
     text-align: left;
     padding: 5px;
     color: black;
@@ -129,9 +131,9 @@ table tr th {
     width: 100%;
     max-width: 350px;
   }
-.td:last-child{
+/* .td:last-child{
     text-align: right;
-}
+} */
 th:last-child{
     text-align: right;
 }

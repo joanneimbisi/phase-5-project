@@ -96,7 +96,7 @@ const Cart = () => {
     <table> 
         <tbody>
          <tr>
-            <th className="prod">Product</th>
+           <h4>Product</h4>
         </tr>
 
         {cart.map((camera) => {

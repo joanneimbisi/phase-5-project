@@ -13,6 +13,7 @@ export default function Order({ order }) {
     })
     // const cameras = useSelector((store) => store.camerasReducer);
     
+    const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
 
     const removeOrder = () =>{
@@ -23,6 +24,8 @@ export default function Order({ order }) {
         e.preventDefault();
         dispatch(editOrder(order.id, formData));
         setShowEdit(!showEdit)
+        console.log(errors)
+        setErrors(errors)
     }
 
     const handleChange =(event) =>{
@@ -77,6 +80,14 @@ export default function Order({ order }) {
                         <button type='submit'>Update order</button>
                     </form>
                 }    
+
+                { errors && (
+                 <ul style={{ color: "red" }}>
+                 {errors.map((error) => (
+                     <li key={error}>{error}</li>
+                 ))}
+                 </ul>
+                 )}
                 </div>                   
     </>
     

@@ -37,17 +37,10 @@ brands = [
         brand_name: 'Sony'
     },
     {
-        id: 3,
-        brand_name: 'Olympus'
-    },
-    {
         id: 4,
         brand_name: 'Nikon'
-    },
-    {
-        id: 5,
-        brand_name: 'Leica'
     }
+  
 ]
 
 Brand.delete_all

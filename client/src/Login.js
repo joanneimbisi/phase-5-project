@@ -13,7 +13,7 @@ function Login(){
     console.log('inside of the login component', user)
 
     useEffect(() => {
-      if (user) {
+      if (user?.id) {
         navigate('/cameras')
       }
     }, [user, navigate])
@@ -63,7 +63,7 @@ function Login(){
             <br />
             <label className="id">
               password:
-              <input type="text" name="password" className='input-line full-width' onChange={handleChange} value={formData.password}/>
+              <input type="password" name="password" className='input-line full-width' onChange={handleChange} value={formData.password}/>
               <i className="far fa-user"></i>
             </label>
             <div className='spacing'>or <span className='highlight'  onClick={handleSignUp}>Sign Up</span></div>
