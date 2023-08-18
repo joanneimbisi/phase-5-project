@@ -69,6 +69,7 @@ export default function Order({ order }) {
       <button type="button" onClick={onShowEdit}>
         EDIT
       </button>
+      <br></br>
       <button onClick={removeOrder}> CANCEL</button>
       {showEdit && (
         <form onSubmit={onEditOrder}>
