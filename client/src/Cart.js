@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./cart.css";
+import { loadOrders } from "./components/actions/orders";
 import ErrorComponent from "./Error";
 
 const Cart = () => {
@@ -67,6 +68,7 @@ const Cart = () => {
           dispatch({ type: "ORDER_PLACED", payload: [] });
           if (user) {
             navigate("/thankyou");
+            dispatch(loadOrders())
           } else {
             navigate("/login");
           }
