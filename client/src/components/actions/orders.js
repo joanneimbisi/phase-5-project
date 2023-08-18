@@ -42,7 +42,7 @@ export const deleteOrder = (id) => {
 
 export const editOrder = (id, formData) => {
   return (dispatch) => {
-    fetch(`/orders/${id}`, {
+    return fetch(`/orders/${id}`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -50,15 +50,35 @@ export const editOrder = (id, formData) => {
       },
       body: JSON.stringify(formData),
     })
-      .then((r) => r.json())
-      .then((data) => {
-        console.log('data', data)
-        // dispatch an action for editing our order
-        const action = {
-          type: "EDIT_ORDER",
-          payload: data,
-        };
-        dispatch(action);
-      });
+      .then((r) => {
+        if (r.ok) {
+          r.json().then((data) => {
+            const action = {
+              type: "EDIT_ORDER",
+              payload: data,
+            };
+            dispatch(action);
+          });
+        } 
+        return r;
+      })
   };
-};
+  };
+  
+  // fetch(`/orders/${id}`, {
+    //   method: "PATCH",
+    //   headers: {
+      //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(formData),
+    // })
+    // .then((resp) => {
+      // if (resp.ok) {
+      //   resp.json().then((res)=> {
+      //      dispatch({type: 'EDIT_ORDER', payload: res})
+      // }) 
+      // } else {
+      //    resp.json().then((errorData) => {
+                // dispatch({ type: 'EDIT_ERROR', payload: errorData })
+      // })

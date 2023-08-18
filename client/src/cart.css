@@ -97,7 +97,7 @@ table{
     display: flex;
     flex-wrap: wrap;
 }
-h4{
+th{
     text-align: left;
     padding: 5px;
     color: black;

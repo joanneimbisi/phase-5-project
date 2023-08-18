@@ -72,7 +72,7 @@ function SignUp() {
                     <input
                     placeholder="password"
                     className='input-line full-width'
-                    type="textarea"
+                    type="password"
                     id="password"
                     onChange={handleChange}
                     value={formData.password}

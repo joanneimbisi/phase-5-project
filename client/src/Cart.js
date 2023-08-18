@@ -2,14 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./cart.css";
-
-const ErrorComponent = ({ name, errors }) => {
-    if (!errors || errors.length === 0) return null
-
-    return errors.map(error => {
-        return <div key={error.shipping_address}>{`${name} ${error}`}</div>
-    })
-}
+import ErrorComponent from "./Error";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -96,7 +89,9 @@ const Cart = () => {
     <table> 
         <tbody>
          <tr>
-           <h4>Product</h4>
+          <td>
+           <th>Product</th>
+          </td>
         </tr>
 
         {cart.map((camera) => {

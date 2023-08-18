@@ -21,9 +21,8 @@ class OrdersController < ApplicationController
 
     def update 
         order = Order.find_by(id: params[:id])
-            if true
-                # order.user_id == session[:user_id] 
-            order.update(order_params)
+        if order.user_id == session[:user_id]                 
+            order.update!(order_params)
             render json: order, status: :accepted
         else
             render json: {error: "order not found"}, status: :not_found

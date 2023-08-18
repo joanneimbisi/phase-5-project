@@ -10,7 +10,8 @@ const MyOrders = () => {
 
     
 
-    const data = orders.map((order) => { 
+    const data = [...orders].sort().map((order) => {
+        console.log('order', order)
         return <Order key={order.id} order={order} />
     
         
